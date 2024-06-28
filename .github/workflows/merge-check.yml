@@ -73,7 +73,7 @@ jobs:
 
     - name: Install dependencies
       run: npm install
-      working-directory: ./jira-integration
+      working-directory: ./jira-integration0123
 
     # - name: Send Slack Notifications
     #   env:
@@ -95,4 +95,4 @@ jobs:
         JIRA_IDS: ${{ env.jira_ids }}
         REPO_NAME: ${{ env.repo_name }}
       run: node checkMergeDescriptionIDs.js
-      working-directory: ./jira-integration
+      working-directory: ./jira-integration0123
