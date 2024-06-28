@@ -63,8 +63,8 @@ jobs:
     - name: Checkout jira-integration repository content
       uses: actions/checkout@v4
       with:
-        repository: jgmeet/jira-integration
-        path: jira-integration
+        repository: CM0123/jira-integration0123
+        path: jira-integration0123
 
     - name: Set up Node.js
       uses: actions/setup-node@v4
