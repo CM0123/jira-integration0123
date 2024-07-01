@@ -107,7 +107,7 @@ async function main() {
             username: 'saamri',
             icon_emoji: 'neutral_face',
             text: `A new Pull Request is raised!`,
-            blocks: [ {type: "section",text: {type: "mrkdwn",text: `*A new Pull Request is raised!*\n<${pr_url}|View PR>`}}]
+            blocks: [ {type: "section",text: {type: "mrkdwn",text: `A new Pull Request is raised!\n<${pr_url}|View PR>`}}]
         }
         
         const message_MergedPR = {
