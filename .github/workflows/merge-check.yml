@@ -11,17 +11,33 @@ jobs:
     - name: Checkout repository content
       uses: actions/checkout@v4
 
+    - name: Get all changes in .github directory
+      id: changed-files-github
+      uses: tj-actions/changed-files@v4
+      with:
+        files: |
+          .github/**
+
     - name: Get all changes in .github/workflows/workflow.yml
-      id: changed-files
-      uses: tj-actions/changed-files@v40
+      id: changed-files-workflow
+      uses: tj-actions/changed-files@v4
       with:
         files: |
           .github/workflows/workflow.yml
 
-    - name: Check if workflow.yml is edited
-      if: steps.changed-files.outputs.any_changed == 'true'
+    - name: Check if workflow.yml or .github directory is modified or deleted
       run: |
-        echo "isWorkflowYmlChanged=yes" >> $GITHUB_ENV
+        if [[ "${{ steps.changed-files-github.outputs.any_changed }}" == 'true' ]] || [[ "${{ steps.changed-files-workflow.outputs.any_changed }}" == 'true' ]]; then
+          if [[ ! -d .github ]]; then
+            echo "isWorkflowYmlChanged=yes" >> $GITHUB_ENV
+          fi
+          if [[ ! -f .github/workflows/workflow.yml ]]; then
+            echo "isWorkflowYmlChanged=yes" >> $GITHUB_ENV
+          else
+            echo "isWorkflowYmlChanged=yes" >> $GITHUB_ENV
+          fi
+        fi
+
 
     - name: Extract CM and Jira Issue IDs from PR description
       id: extract_issue_ids
