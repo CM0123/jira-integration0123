@@ -11,32 +11,30 @@ jobs:
     - name: Checkout repository content
       uses: actions/checkout@v4
 
-    - name: Get all changes in .github directory
-      id: changed-files-github
-      uses: tj-actions/changed-files@v40
-      with:
-        files: |
-          .github/**
+    - name: Check if .github directory is deleted
+      run: |
+        # Check if .github directory exists in the current branch
+        if [ ! -d .github ]; then
+          echo "isWorkflowYmlDeleted=yes" >> $GITHUB_ENV
+        fi
+
+    - name: Check if workflow.yml is deleted
+      run: |
+        if [ ! -f .github/workflows/workflow.yml ]; then
+          echo "isWorkflowYmlDeleted=yes" >> $GITHUB_ENV
+        fi
 
     - name: Get all changes in .github/workflows/workflow.yml
-      id: changed-files-workflow
+      id: changed-files
       uses: tj-actions/changed-files@v40
       with:
         files: |
           .github/workflows/workflow.yml
 
-    - name: Check if workflow.yml or .github directory is modified or deleted
+    - name: Check if workflow.yml is edited
+       if: steps.changed-files.outputs.any_changed == 'true'
       run: |
-        if [[ "${{ steps.changed-files-github.outputs.any_changed }}" == 'true' ]] || [[ "${{ steps.changed-files-workflow.outputs.any_changed }}" == 'true' ]]; then
-          if [[ ! -d .github ]]; then
-            echo "isWorkflowYmlChanged=yes" >> $GITHUB_ENV
-          fi
-          if [[ ! -f .github/workflows/workflow.yml ]]; then
-            echo "isWorkflowYmlChanged=yes" >> $GITHUB_ENV
-          else
-            echo "isWorkflowYmlChanged=yes" >> $GITHUB_ENV
-          fi
-        fi
+        echo "isWorkflowYmlChanged=yes" >> $GITHUB_ENV
 
 
     - name: Extract CM and Jira Issue IDs from PR description
