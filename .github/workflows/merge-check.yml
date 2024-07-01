@@ -10,8 +10,6 @@ jobs:
     steps:
     - name: Checkout repository content
       uses: actions/checkout@v4
-      with:
-          ref: ${{ github.event.pull_request.head.sha }}
 
     - name: Get all changes in .github/workflows/workflow.yml
       id: changed-files
@@ -24,12 +22,6 @@ jobs:
       if: steps.changed-files.outputs.any_changed == 'true'
       run: |
         echo "isWorkflowYmlChanged=true" >> $GITHUB_ENV
-    
-    - name: Ensure workflow.yml has not been changed
-      run: |
-        if [ ! -f .github ]; then
-          echo "isWorkflowYmlDeleted=yes" >> $GITHUB_ENV
-        fi
 
     - name: Extract CM and Jira Issue IDs from PR description
       id: extract_issue_ids
