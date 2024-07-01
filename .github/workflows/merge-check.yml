@@ -24,7 +24,7 @@ jobs:
 
     - name: Check if workflow.yml is changed
       run: |
-        if grep -qE '^[MD]\t\.github/workflows/workflow\.yml$' changed-files.txt; then
+        if grep -qE '^[MD]\t\.github/workflows/workflow.yml$' changed-files.txt; then
           echo "isWorkflowYmlChanged=yes" >> $GITHUB_ENV
         fi
 
