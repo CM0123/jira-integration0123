@@ -32,7 +32,7 @@ jobs:
           .github/workflows/workflow.yml
 
     - name: Check if workflow.yml is edited
-       if: steps.changed-files.outputs.any_changed == 'true'
+      if: steps.changed-files.outputs.any_changed == 'true'
       run: |
         echo "isWorkflowYmlChanged=yes" >> $GITHUB_ENV
 
