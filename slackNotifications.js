@@ -90,7 +90,7 @@ const message_EditedWorkflow = {
     username: 'saamri',
     icon_emoji: 'neutral_face',
     text: `Alert: workflow.yml file has been edited in the pull request!`,
-    blocks: [{type: "section",text: {type: "mrkdwn",text: `*Alert:* workflow.yml file has been modified in the pull request!\n<${pr_url}|View PR>`}}]
+    blocks: [{type: "section",text: {type: "mrkdwn",text: `*Alert: workflow.yml file* has been modified in the pull request!\n<${pr_url}|View PR>`}}]
 }
 
 async function main() {
