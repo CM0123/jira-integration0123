@@ -88,7 +88,7 @@ async function getSlackChannels(issue_id) {
 const message_EditedWorkflow = {
     channel: '#infra-internal',
     username: 'saamri',
-    icon_emoji: 'sweat_smile',
+    icon_emoji: 'neutral_face',
     text: `Alert: workflow.yml file has been modified in the pull request!`,
     blocks: [{type: "section",text: {type: "mrkdwn",text: `*Alert:* workflow.yml file has been modified in the pull request!\n<${pr_url}|View PR>`}}]
 }
@@ -105,7 +105,7 @@ async function main() {
         const message_OpenedPR = {
             channel: slackChannels[i],
             username: 'saamri',
-            icon_emoji: 'sweat_smile',
+            icon_emoji: 'neutral_face',
             text: `A new Pull Request is raised!`,
             blocks: [ {type: "section",text: {type: "mrkdwn",text: `*A new Pull Request is raised!*\n<${pr_url}|View PR>`}}]
         }
@@ -113,7 +113,7 @@ async function main() {
         const message_MergedPR = {
             channel: slackChannels[i],
             username: 'saamri',
-            icon_emoji: 'sweat_smile',
+            icon_emoji: 'neutral_face',
             text: `A new Pull Request is merged!`,
             blocks: [ {type: "section",text: {type: "mrkdwn",text: `*A new Pull Request is merged!*\n<${pr_url}|View PR>`}}]
         }
