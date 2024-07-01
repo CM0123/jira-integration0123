@@ -14,11 +14,11 @@ jobs:
         ref: ${{ github.event.pull_request.head.sha }}
 
     - name: Get all changes in .github/workflows/workflow.yml
-        id: changed-files
-        uses: tj-actions/changed-files@v4
-        with:
-          files: |
-            .github/workflows/workflow.yml
+      id: changed-files
+      uses: tj-actions/changed-files@v4
+      with:
+        files: |
+          .github/workflows/workflow.yml
 
     - name: Check if workflow.yml is modified
       if: steps.changed-files.outputs.any_changed == 'true'
