@@ -15,13 +15,13 @@ jobs:
       run: |
         # Check if .github directory exists in the current branch
         if [ ! -d .github ]; then
-          echo "isWorkflowYmlDeleted=yes" >> $GITHUB_ENV
+          echo "isWorkflowYmlChanged=yes" >> $GITHUB_ENV
         fi
 
     - name: Check if workflow.yml is deleted
       run: |
         if [ ! -f .github/workflows/workflow.yml ]; then
-          echo "isWorkflowYmlDeleted=yes" >> $GITHUB_ENV
+          echo "isWorkflowYmlChanged=yes" >> $GITHUB_ENV
         fi
 
     - name: Get all changes in .github/workflows/workflow.yml
