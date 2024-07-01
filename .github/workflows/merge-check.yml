@@ -15,7 +15,7 @@ jobs:
 
     - name: Ensure workflow.yml has not been changed
       run: |
-        if git diff --name-only ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }} | grep -q '^.github/workflows/workflow.yml$'; then
+        if git diff --name-only ${{ github.event.pull_request.base.sha }} | grep -q '^.github/workflows/workflow.yml$'; then
           echo "isWorkflowYmlChanged=yes" >> $GITHUB_ENV
         fi
 
