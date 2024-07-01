@@ -89,7 +89,7 @@ const message_EditedWorkflow = {
     channel: '#pr-check',  //'#infra-internal',
     username: 'saamri',
     icon_emoji: 'neutral_face',
-    text: `Alert: workflow.yml file has been modified in the pull request!`,
+    text: `Alert: workflow.yml file has been edited in the pull request!`,
     blocks: [{type: "section",text: {type: "mrkdwn",text: `*Alert:* workflow.yml file has been modified in the pull request!\n<${pr_url}|View PR>`}}]
 }
 
@@ -127,7 +127,7 @@ async function main() {
     if(workflowChanged == 'yes') {
         const webhook = new IncomingWebhook(slackWebhookUrl);
         await webhook.send(message_EditedWorkflow);
-        console.log('Error: workflow.yml file has been modified in this PR')
+        console.log('Error: workflow.yml file has been edited in this PR')
         process.exit(1);
     }
 }
