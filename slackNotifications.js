@@ -86,7 +86,7 @@ async function getSlackChannels(issue_id) {
 
 
 const message_EditedWorkflow = {
-    channel: '#infra-internal',
+    channel: '#pr-check',  //'#infra-internal',
     username: 'saamri',
     icon_emoji: 'neutral_face',
     text: `Alert: workflow.yml file has been modified in the pull request!`,

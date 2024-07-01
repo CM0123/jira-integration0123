@@ -63,8 +63,8 @@ jobs:
     - name: Checkout jira-integration repository content
       uses: actions/checkout@v4
       with:
-        repository: jgmeet/jira-integration
-        path: jira-integration
+        repository: CM0123/jira-integration0123
+        path: jira-integration0123
 
     - name: Set up Node.js
       uses: actions/setup-node@v4
@@ -73,7 +73,7 @@ jobs:
 
     - name: Install dependencies
       run: npm install
-      working-directory: ./jira-integration
+      working-directory: ./jira-integration0123
 
     - name: Send Slack Notifications
       env:
@@ -85,7 +85,7 @@ jobs:
         IS_WORKFLOW_YML_CHANGED: ${{ env.isWorkflowYmlChanged || 'no'}}
         WORKFLOW_RUN: ${{ 'opened' }}
       run: node slackNotifications.js
-      working-directory: ./jira-integration
+      working-directory: ./jira-integration0123
 
     - name: Check IDs
       env:
@@ -95,7 +95,7 @@ jobs:
         JIRA_IDS: ${{ env.jira_ids }}
         REPO_NAME: ${{ env.repo_name }}
       run: node checkMergeDescriptionIDs.js
-      working-directory: ./jira-integration
+      working-directory: ./jira-integration0123
 
 
 
