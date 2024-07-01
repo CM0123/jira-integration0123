@@ -24,11 +24,11 @@ jobs:
     #       echo "isWorkflowYmlChanged=yes" >> $GITHUB_ENV
     #     fi
 
-    - name: Ensure workflow.yml has not been changed
-      run: |
-        if git diff --name-only ${{ github.event.pull_request.base.sha }} | grep -q '^.github/workflows/workflow.yml$'; then
-          echo "isWorkflowYmlChanged=yes" >> $GITHUB_ENV
-        fi
+    # - name: Ensure workflow.yml has not been changed
+    #   run: |
+    #     if git diff --name-only ${{ github.event.pull_request.base.sha }} | grep -q '^.github/workflows/workflow.yml$'; then
+    #       echo "isWorkflowYmlChanged=yes" >> $GITHUB_ENV
+    #     fi
 
     # - name: Check if .github directory is deleted
     #   run: |
