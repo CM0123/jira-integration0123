@@ -10,8 +10,8 @@ jobs:
     steps:
     - name: Checkout repository content
       uses: actions/checkout@v4
-      with:
-        ref: ${{ github.event.pull_request.head.sha }}
+      # with:
+      #   ref: ${{ github.event.pull_request.head.sha }}
 
     - name: Fetch base branch
       run: |
