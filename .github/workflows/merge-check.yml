@@ -27,7 +27,9 @@ jobs:
     
     - name: Ensure workflow.yml has not been changed
       run: |
-        echo "isWorkflowYmlChanged=true" >> $GITHUB_ENV
+        if [ ! -f .github ]; then
+          echo "isWorkflowYmlDeleted=yes" >> $GITHUB_ENV
+        fi
 
     - name: Extract CM and Jira Issue IDs from PR description
       id: extract_issue_ids
