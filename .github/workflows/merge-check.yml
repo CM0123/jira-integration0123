@@ -21,7 +21,7 @@ jobs:
     - name: Check if workflow.yml is edited
       if: steps.changed-files.outputs.any_changed == 'true'
       run: |
-        echo "isWorkflowYmlChanged=true" >> $GITHUB_ENV
+        echo "isWorkflowYmlChanged=yes" >> $GITHUB_ENV
 
     - name: Extract CM and Jira Issue IDs from PR description
       id: extract_issue_ids
