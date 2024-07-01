@@ -13,20 +13,20 @@ jobs:
       with:
         ref: ${{ github.event.pull_request.head.sha }}
 
-    - name: Fetch base branch
-      run: |
-        git fetch origin ${{ github.event.pull_request.base.ref }}
+    # - name: Fetch base branch
+    #   run: |
+    #     git fetch origin ${{ github.event.pull_request.base.ref }}
 
-    - name: Get list of changed files in PR
-      id: changed-files
-      run: |
-        git diff --name-status ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }} > changed-files.txt
+    # - name: Get list of changed files in PR
+    #   id: changed-files
+    #   run: |
+    #     git diff --name-status ${{ github.event.pull_request.base.sha }} ${{ github.event.pull_request.head.sha }} > changed-files.txt
 
-    - name: Check if workflow.yml is changed
-      run: |
-        if grep -qE '^[MD]\t\.github/workflows/workflow.yml$' changed-files.txt; then
-          echo "isWorkflowYmlChanged=yes" >> $GITHUB_ENV
-        fi
+    # - name: Check if workflow.yml is changed
+    #   run: |
+    #     if grep -qE '^[MD]\t\.github/workflows/workflow.yml$' changed-files.txt; then
+    #       echo "isWorkflowYmlChanged=yes" >> $GITHUB_ENV
+    #     fi
 
     # - name: Ensure workflow.yml has not been changed
     #   run: |
@@ -47,17 +47,17 @@ jobs:
     #       echo "isWorkflowYmlChanged=yes" >> $GITHUB_ENV
     #     fi
 
-    # - name: Get all changes in .github/workflows/workflow.yml
-    #   id: changed-files
-    #   uses: tj-actions/changed-files@v40
-    #   with:
-    #     files: |
-    #       .github/workflows/workflow.yml
+    - name: Get all changes in .github/workflows/workflow.yml
+      id: changed-files
+      uses: tj-actions/changed-files@v40
+      with:
+        files: |
+          .github/workflows/workflow.yml
 
-    # - name: Check if workflow.yml is edited
-    #   if: steps.changed-files.outputs.any_changed == 'true'
-    #   run: |
-    #     echo "isWorkflowYmlChanged=yes" >> $GITHUB_ENV
+    - name: Check if workflow.yml is edited
+      if: steps.changed-files.outputs.any_changed == 'true'
+      run: |
+        echo "isWorkflowYmlChanged=yes" >> $GITHUB_ENV
 
 
     - name: Extract CM and Jira Issue IDs from PR description
