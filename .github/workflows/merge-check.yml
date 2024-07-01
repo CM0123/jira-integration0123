@@ -13,14 +13,14 @@ jobs:
 
     - name: Get all changes in .github directory
       id: changed-files-github
-      uses: tj-actions/changed-files@v4
+      uses: tj-actions/changed-files@v40
       with:
         files: |
           .github/**
 
     - name: Get all changes in .github/workflows/workflow.yml
       id: changed-files-workflow
-      uses: tj-actions/changed-files@v4
+      uses: tj-actions/changed-files@v40
       with:
         files: |
           .github/workflows/workflow.yml
