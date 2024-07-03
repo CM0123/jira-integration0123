@@ -16,6 +16,8 @@ jobs:
 
     - name: Check if workflow.yml is deleted
       id: check-deletion
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         # Get the list of changed files in the PR
         gh pr view ${{ github.event.pull_request.number }} --json files --jq '.files[].path' > changed_files.txt
